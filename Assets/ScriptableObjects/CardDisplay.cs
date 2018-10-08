@@ -4,11 +4,11 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEditor;
 using UnityTimer;
 
-public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
+public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-
     public Text nameText;
     public Text descriptionText;
 
@@ -32,7 +32,6 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
     public bool cardOver;
     public bool cardExpanded;
     public bool cardShrinkable;
-    private Timer expansionTimer;
     private Action letcardShrink;
 
     // Use this for initialization
@@ -75,6 +74,12 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
             }
 
         }
+        if (Input.GetMouseButtonDown(0) && !string.IsNullOrWhiteSpace(name) && cardOver)
+        {
+            UnityEngine.Object dct = Instantiate(GameObject.Find("DeckCardText"), GameObject.Find("DeckContent").transform);
+            (dct as GameObject).transform.localScale = new Vector3(0.96f, 0.51f, 1);
+            (dct as GameObject).SendMessage("SetDeckCardText", new object[] { name, maxindeck });
+        }
 
     }
     void GetID(int cardid)
@@ -114,10 +119,7 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
 
         }
     }
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        GameObject.Find("SCT").SendMessage("AddToDeck",name);
-    }
+   
 
     public void OnPointerExit(PointerEventData eventData)
     {
@@ -130,6 +132,6 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerClickHan
         RectTransform rt = (RectTransform)expandedcard.transform;
         expandedcard.transform.localScale = Vector3.one;
         expandedcard.transform.position = new Vector3((Screen.width / 2) - (rt.rect.width / 2), (Screen.height / 2) - (rt.rect.height / 2), 0);
-        expansionTimer = Timer.Register(0.2f, letcardShrink);
+        Timer.Register(0.2f, letcardShrink);
     }
 }

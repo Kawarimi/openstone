@@ -15,6 +15,7 @@ public class UIFunctions : MonoBehaviour
 {
     // Use this for initialization
     string defpath;
+    int amountindeck;
 
     void Start()
     {
@@ -101,9 +102,15 @@ public class UIFunctions : MonoBehaviour
         }
         print(_path);
     }
-    void AddToDeck()
+    void SetDeckCardText(object[] deckReqs)
     {
-
+        GetComponent<TextMeshProUGUI>().text = deckReqs[0] as string;
+        gameObject.name = deckReqs[0] as string;
+        amountindeck++;
+        if (amountindeck >= (Int32)deckReqs[1])
+        {
+            Destroy(gameObject);
+        }
     }
 }
 public class Cardjson
@@ -125,6 +132,11 @@ public class Cardjson
     public int maxindeck { get; set; }
 
     public Sprite artworkimg { get; set; }
+}
+public class Deckjson
+{
+    [JsonProperty("name")]
+    public string name { get; set; }
 }
 public class PackInfo
 {
