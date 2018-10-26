@@ -15,6 +15,8 @@ public class UIFunctions : MonoBehaviour
 {
     // Use this for initialization
     string defpath;
+    int amountindeck;
+
     void Start()
     {
         //defpath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\openstone";
@@ -43,7 +45,7 @@ public class UIFunctions : MonoBehaviour
     {
         SceneManager.LoadScene("Settings");
     }
-    IEnumerator ImportCardsDeckManager()
+    void ImportCardsDeckManager()
     {
         WriteResult(StandaloneFileBrowser.OpenFolderPanel("Select Pack Folder", "", false));
         string infojson = File.ReadAllText(_path + @"\packinfo.json");
@@ -55,24 +57,25 @@ public class UIFunctions : MonoBehaviour
         TextMeshProUGUI infotext = GameObject.Find("Info").GetComponent<TextMeshProUGUI>();
         infotext.text = packinfo.name + "\n" + packinfo.desc + "\n v" + packinfo.version;
         GameObject excard = GameObject.Find("Card");
+
         //var packbundle = UnityWebRequestAssetBundle.GetAssetBundle("file:///" + _path);
-        UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle("file:///" + _path, 0);
-        yield return request.SendWebRequest();
-        AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(request);
+        //UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle("file:///" + _path, 0);
+        //yield return request.SendWebRequest();
+        //AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(request);
         int i = 0;
         foreach (Cardjson element in cardarray)
-        {          
-            Instantiate(excard,GameObject.Find("ContentFoCard").transform);
+        {
+            Instantiate(excard, GameObject.Find("CardExplorerContent").transform);
             //excard.name = ("Card " + i);
-            GameObject.Find("ContentFoCard").transform.GetChild(i).SendMessage("GetID", i);
-            cardarray[i].img = images + cardarray[i].img;
-            cardarray[i].artworkimg = bundle.LoadAsset<Sprite>(cardarray[i].img);
+            GameObject.Find("CardExplorerContent").transform.GetChild(i).SendMessage("GetID", i);
+            cardarray[i].img = _path + images + cardarray[i].img;
+            //cardarray[i].artworkimg = bundle.LoadAsset<Sprite>(cardarray[i].img);
             print(cardarray[i].img);
-            GameObject.Find("ContentFoCard").transform.GetChild(i).SendMessage("RecieveStats", cards);
+            GameObject.Find("CardExplorerContent").transform.GetChild(i).SendMessage("RecieveStats", cards);
             print(cardarray[i].name);
             i++;
         }
-        //Destroy(GameObject.Find("Card(Clone)"));
+        Destroy(GameObject.Find("Card"));
     }
     void DefineSaveLocation()
     {
@@ -99,6 +102,31 @@ public class UIFunctions : MonoBehaviour
         }
         print(_path);
     }
+    void SetDeckCardText(object[] deckReqs)
+    {
+        GetComponent<TextMeshProUGUI>().text = deckReqs[0] as string;
+        gameObject.name = deckReqs[0] as string;
+        amountindeck++;
+        if (amountindeck >= (Int32)deckReqs[1])
+        {
+            Destroy(gameObject);
+        }
+    }
+    void SerializeDeck()
+    {
+        int deckCardCount = GameObject.Find("DeckContent").transform.childCount;
+        Deckjson[] deckjson = new Deckjson[deckCardCount]; 
+        for (int i = 0; i < deckCardCount; i++)
+        {
+            Deckjson iDeck = new Deckjson();
+            iDeck.name = GameObject.Find("DeckContent").transform.GetChild(i).name;
+            deckjson[i] = iDeck;
+        }
+        
+        string deckserialized = JsonConvert.SerializeObject(deckjson);
+        WriteResult(StandaloneFileBrowser.OpenFolderPanel("Select Deck Output", "", false));
+        File.WriteAllText(_path + @"/deck.json", deckserialized);
+    }
 }
 public class Cardjson
 {
@@ -119,6 +147,11 @@ public class Cardjson
     public int maxindeck { get; set; }
 
     public Sprite artworkimg { get; set; }
+}
+public class Deckjson
+{
+    [JsonProperty("name")]
+    public string name { get; set; }
 }
 public class PackInfo
 {

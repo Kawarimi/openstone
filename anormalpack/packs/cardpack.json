@@ -28,4 +28,34 @@
 "manacost":"3",
 "maxindeck":"20"
 }
+,
+{
+"name":"a",
+"description":"He will show you da wae",
+"atk":"5",
+"hp":"2",
+"img":"ugandanknuckles.jpg",
+"manacost":"3",
+"maxindeck":"20"
+}
+,
+{
+"name":"b",
+"description":"He will show you da wae",
+"atk":"5",
+"hp":"2",
+"img":"ugandanknuckles.jpg",
+"manacost":"3",
+"maxindeck":"20"
+}
+,
+{
+"name":"c",
+"description":"He will show you da wae",
+"atk":"5",
+"hp":"2",
+"img":"ugandanknuckles.jpg",
+"manacost":"3",
+"maxindeck":"20"
+}
 ]
