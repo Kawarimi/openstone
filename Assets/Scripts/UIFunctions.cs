@@ -112,6 +112,21 @@ public class UIFunctions : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    void SerializeDeck()
+    {
+        int deckCardCount = GameObject.Find("DeckContent").transform.childCount;
+        Deckjson[] deckjson = new Deckjson[deckCardCount]; 
+        for (int i = 0; i < deckCardCount; i++)
+        {
+            Deckjson iDeck = new Deckjson();
+            iDeck.name = GameObject.Find("DeckContent").transform.GetChild(i).name;
+            deckjson[i] = iDeck;
+        }
+        
+        string deckserialized = JsonConvert.SerializeObject(deckjson);
+        WriteResult(StandaloneFileBrowser.OpenFolderPanel("Select Deck Output", "", false));
+        File.WriteAllText(_path + @"/deck.json", deckserialized);
+    }
 }
 public class Cardjson
 {
