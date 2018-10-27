@@ -1,9 +1,12 @@
+[
 {
 "name":"Nine-Tailed Fox",
 "description":"A MTF Epsilon-11 squad",
 "atk":"3",
 "hp":"2",
-"img":"Gearboi"
+"img":"ntf.png",
+"manacost":"2",
+"maxindeck":"9"
 }
 ,
 {
@@ -11,5 +14,48 @@
 "description":"Negates Stealth with Infrared Vision",
 "atk":"10",
 "hp":"1",
-"img":"rushb"
+"img":"genji.png",
+"manacost":"5",
+"maxindeck":"1"
 }
+,
+{
+"name":"Ugandan Knuckles",
+"description":"He will show you da wae",
+"atk":"5",
+"hp":"2",
+"img":"ugandanknuckles.jpg",
+"manacost":"3",
+"maxindeck":"20"
+}
+,
+{
+"name":"a",
+"description":"He will show you da wae",
+"atk":"5",
+"hp":"2",
+"img":"ugandanknuckles.jpg",
+"manacost":"3",
+"maxindeck":"20"
+}
+,
+{
+"name":"b",
+"description":"He will show you da wae",
+"atk":"5",
+"hp":"2",
+"img":"ugandanknuckles.jpg",
+"manacost":"3",
+"maxindeck":"20"
+}
+,
+{
+"name":"c",
+"description":"He will show you da wae",
+"atk":"5",
+"hp":"2",
+"img":"ugandanknuckles.jpg",
+"manacost":"3",
+"maxindeck":"20"
+}
+]
