@@ -82,10 +82,10 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         }
 
     }
-    void GetID(int cardid)
-    {
-        cardID = cardid;
-    }
+    //void GetID(int cardid)
+   // {
+        //cardID = cardid;
+    //}
     void RecieveStats(List<Cardjson> cardstats)
     {
         Cardjson[] cardstatsarray = cardstats.ToArray();

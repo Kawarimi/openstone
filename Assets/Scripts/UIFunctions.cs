@@ -107,7 +107,7 @@ public class UIFunctions : MonoBehaviour
         GetComponent<TextMeshProUGUI>().text = deckReqs[0] as string;
         gameObject.name = deckReqs[0] as string;
         amountindeck++;
-        if (amountindeck >= (Int32)deckReqs[1])
+        if (amountindeck >= (int)deckReqs[1])
         {
             Destroy(gameObject);
         }
