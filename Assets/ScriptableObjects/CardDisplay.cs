@@ -82,10 +82,10 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         }
 
     }
-    //void GetID(int cardid)
-   // {
-        //cardID = cardid;
-    //}
+    void GetID(int cardid)
+   {
+        cardID = cardid;
+    }
     void RecieveStats(List<Cardjson> cardstats)
     {
         Cardjson[] cardstatsarray = cardstats.ToArray();
@@ -111,6 +111,7 @@ public class CardDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         attackText.text = attack.ToString();
         healthText.text = health.ToString();
     }
+    
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (expansion.transform.childCount == 0)
