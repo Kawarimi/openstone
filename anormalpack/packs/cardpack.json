@@ -30,32 +30,22 @@
 }
 ,
 {
-"name":"a",
-"description":"He will show you da wae",
-"atk":"5",
-"hp":"2",
-"img":"ugandanknuckles.jpg",
-"manacost":"3",
+"name":"Benji",
+"description":"Cavalier King Charles Spaniel",
+"atk":"3",
+"hp":"3",
+"img":"benji.jpg",
+"manacost":"2",
 "maxindeck":"20"
 }
 ,
 {
-"name":"b",
-"description":"He will show you da wae",
+"name":"Shiba Inu",
+"description":"The ancient japanese doggo",
 "atk":"5",
-"hp":"2",
-"img":"ugandanknuckles.jpg",
+"hp":"3",
+"img":"shiba.jpg",
 "manacost":"3",
-"maxindeck":"20"
-}
-,
-{
-"name":"c",
-"description":"He will show you da wae",
-"atk":"5",
-"hp":"2",
-"img":"ugandanknuckles.jpg",
-"manacost":"3",
-"maxindeck":"20"
+"maxindeck":"1"
 }
 ]
