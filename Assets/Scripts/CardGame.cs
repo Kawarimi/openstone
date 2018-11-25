@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
+using UnityEngine.Networking;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using UnityEditor;
-using UnityTimer;
 
 public class CardGame : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -17,7 +14,7 @@ public class CardGame : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Text manaText;
     public Text attackText;
     public Text healthText;
-
+  
     public new string name;
     public string description;
     public GameObject expansion;
@@ -30,6 +27,7 @@ public class CardGame : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private bool cardOver;
     private bool cardExpanded;
     private bool cardShrinkable;
+    private bool targeting = false;
     private Action letcardShrink;
 
     // Use this for initialization
@@ -62,13 +60,21 @@ public class CardGame : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             }
         }
 
-        if (Input.GetKey(KeyCode.Mouse1) && cardOver)
+        if (Input.GetKey(KeyCode.Mouse1) && cardOver && !targeting)
         {
 
             if (!cardExpanded)
             {
                 ExpandCard();
             }
+
+        }
+        if (Input.GetKey(KeyCode.Mouse0) && cardOver)
+        {
+            Targeting();
+        }
+        if(Input.GetKey(KeyCode.Mouse1) && targeting)
+        {
 
         }
     }
@@ -104,5 +110,36 @@ public class CardGame : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         health -= dmg;
         healthText.text = health.ToString();
         healthText.color = new Color(200,0,0);
+    }
+    void Targeting()
+    {
+        if(gameObject.tag =="targetablep2")
+        {
+            foreach (GameObject target in GameObject.FindGameObjectsWithTag("targetable"))
+            {
+                if (target.GetComponent<Image>())
+                {
+                    target.GetComponent<Image>().color = new Color(0, 255, 0);
+                }
+                if (target.GetComponent<Material>())
+                {
+                    target.GetComponent<Material>().color = new Color(0, 255, 0);
+                }
+            }
+        }
+        if (gameObject.tag == "targetable")
+        {
+            foreach (GameObject target in GameObject.FindGameObjectsWithTag("targetablep2"))
+            {
+                if (target.GetComponent<Image>())
+                {
+                    target.GetComponent<Image>().color = new Color(0, 255, 0);
+                }
+                if (target.GetComponent<Material>())
+                {
+                    target.GetComponent<Material>().color = new Color(0, 255, 0);
+                }
+            }
+        }
     }
 }

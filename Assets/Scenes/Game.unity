@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 131340447}
   m_Layer: 5
   m_Name: HeroP1
-  m_TagString: Untagged
+  m_TagString: targetable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -281,7 +281,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 141282463}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.19}
+  m_LocalPosition: {x: 0, y: 0, z: -4.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1277638147}
@@ -660,8 +660,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 14.74
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -684,7 +684,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 717721033}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.05, z: -26.72}
+  m_LocalPosition: {x: 0, y: 0.05, z: -82.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1063,6 +1063,10 @@ Prefab:
       propertyPath: m_Name
       value: Ugandan
       objectReference: {fileID: 0}
+    - target: {fileID: 1131332355985414, guid: e62c548595ac7fa478de9442b2a11823, type: 2}
+      propertyPath: m_TagString
+      value: targetable
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114970629170809526, guid: e62c548595ac7fa478de9442b2a11823, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: e62c548595ac7fa478de9442b2a11823, type: 2}
@@ -1242,6 +1246,7 @@ GameObject:
   - component: {fileID: 1052890107}
   - component: {fileID: 1052890106}
   - component: {fileID: 1052890108}
+  - component: {fileID: 1052890109}
   m_Layer: 5
   m_Name: BattlefieldP1
   m_TagString: Untagged
@@ -1314,6 +1319,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 0
+--- !u!114 &1052890109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1052890104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c4f41e1ccb6244d923f60186ad829a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1174522151
 GameObject:
   m_ObjectHideFlags: 0
@@ -1594,6 +1610,10 @@ Prefab:
       propertyPath: m_Name
       value: Benji
       objectReference: {fileID: 0}
+    - target: {fileID: 1131332355985414, guid: e62c548595ac7fa478de9442b2a11823, type: 2}
+      propertyPath: m_TagString
+      value: targetable
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114970629170809526, guid: e62c548595ac7fa478de9442b2a11823, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: e62c548595ac7fa478de9442b2a11823, type: 2}
@@ -1690,6 +1710,7 @@ GameObject:
   - component: {fileID: 1271309841}
   - component: {fileID: 1271309843}
   - component: {fileID: 1271309842}
+  - component: {fileID: 1271309844}
   m_Layer: 5
   m_Name: BattlefieldP2
   m_TagString: Untagged
@@ -1749,6 +1770,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1271309840}
   m_CullTransparentMesh: 0
+--- !u!114 &1271309844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1271309840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c4f41e1ccb6244d923f60186ad829a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1277638143
 GameObject:
   m_ObjectHideFlags: 0
@@ -2071,6 +2103,10 @@ Prefab:
       propertyPath: m_Name
       value: NTF
       objectReference: {fileID: 0}
+    - target: {fileID: 1131332355985414, guid: e62c548595ac7fa478de9442b2a11823, type: 2}
+      propertyPath: m_TagString
+      value: targetable
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114970629170809526, guid: e62c548595ac7fa478de9442b2a11823, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: e62c548595ac7fa478de9442b2a11823, type: 2}
@@ -2170,7 +2206,7 @@ GameObject:
   - component: {fileID: 1477147733}
   m_Layer: 5
   m_Name: HeroP2
-  m_TagString: Untagged
+  m_TagString: targetablep2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2365,6 +2401,10 @@ Prefab:
       propertyPath: m_Name
       value: Shiba
       objectReference: {fileID: 0}
+    - target: {fileID: 1131332355985414, guid: e62c548595ac7fa478de9442b2a11823, type: 2}
+      propertyPath: m_TagString
+      value: targetable
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114970629170809526, guid: e62c548595ac7fa478de9442b2a11823, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: e62c548595ac7fa478de9442b2a11823, type: 2}
@@ -2548,7 +2588,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20.21, y: 0}
+  m_AnchoredPosition: {x: 19.731, y: -0.93}
   m_SizeDelta: {x: 5.007, y: 4.507}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1613369527
@@ -2652,6 +2692,8 @@ MonoBehaviour:
   P2deck: {fileID: 979541747}
   P1cards: {fileID: 141282463}
   P2cards: {fileID: 917481988}
+  P1hero: {fileID: 131340443}
+  P2hero: {fileID: 1477147729}
   allcards: {fileID: 59885460}
 --- !u!1 &1621362060
 GameObject:
@@ -3341,6 +3383,10 @@ Prefab:
     - target: {fileID: 1131332355985414, guid: e62c548595ac7fa478de9442b2a11823, type: 2}
       propertyPath: m_Name
       value: Genji
+      objectReference: {fileID: 0}
+    - target: {fileID: 1131332355985414, guid: e62c548595ac7fa478de9442b2a11823, type: 2}
+      propertyPath: m_TagString
+      value: targetable
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114970629170809526, guid: e62c548595ac7fa478de9442b2a11823, type: 2}
