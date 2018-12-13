@@ -6,6 +6,8 @@ TagManager:
   tags:
   - targetable
   - targetablep2
+  - manabar1
+  - manabar2
   layers:
   - Default
   - TransparentFX

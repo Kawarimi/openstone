@@ -46,6 +46,67 @@ public class CardGame : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     void Update()
     {
+        if(targeting && Input.GetMouseButtonDown(0))
+        {
+            //p1
+            if(GameTurn.turn)
+            {
+                RaycastHit hitInfo = new RaycastHit();
+                bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
+                if (hit)
+                {
+                    Debug.Log("Hit " + hitInfo.transform.gameObject.name);
+                    if (hitInfo.transform.gameObject.tag == "targetablep2" && GameTurn.turn)
+                    {
+                        hitInfo.transform.gameObject.SendMessage("GotDamaged",attack);
+                        if(hitInfo.transform.gameObject.GetComponent<CardGame>() && GameObject.FindGameObjectWithTag("manabar1").GetComponent<ManaBarScript>().mana < manaCost)
+                        {
+                            GotDamaged(hitInfo.transform.gameObject.GetComponent<CardGame>().attack);
+                            GameTurn.turn = !GameTurn.turn;
+                            //direct mana burn, no placement
+                            GameObject.FindGameObjectWithTag("manabar1").SendMessage("UseMana", manaCost);
+                            
+                        }
+                        targeting = false;
+                        Debug.Log("It's working!");
+                    }
+                    else
+                    {
+                        Debug.Log("nopz");
+                    }
+                }
+            }
+            //p2
+            if(!GameTurn.turn)
+            {
+                RaycastHit hitInfo = new RaycastHit();
+                bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
+                if (hit)
+                {
+                    Debug.Log("Hit " + hitInfo.transform.gameObject.name);
+                    if (hitInfo.transform.gameObject.tag == "targetable" && !GameTurn.turn)
+                    {
+                        hitInfo.transform.gameObject.SendMessage("GotDamaged", attack);
+                        if (hitInfo.transform.gameObject.GetComponent<CardGame>() && GameObject.FindGameObjectWithTag("manabar2").GetComponent<ManaBarScript>().mana < manaCost)
+                        {
+                            GotDamaged(hitInfo.transform.gameObject.GetComponent<CardGame>().attack);
+                            GameTurn.turn = !GameTurn.turn;
+                            //direct mana burn, no placement
+                            GameObject.FindGameObjectWithTag("manabar2").SendMessage("UseMana", manaCost);
+                        }
+                        Debug.Log("It's working!");
+                        targeting = false;
+                    }
+                    else
+                    {
+                        Debug.Log("nopz");
+                    }
+                }
+            }
+        }
+
+
+
         if (Input.GetKey(KeyCode.Mouse1) && cardExpanded && cardShrinkable)
         {
             try
@@ -75,7 +136,34 @@ public class CardGame : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
         if(Input.GetKey(KeyCode.Mouse1) && targeting)
         {
-
+            if (gameObject.tag == "targetablep2")
+            {
+                foreach (GameObject target in GameObject.FindGameObjectsWithTag("targetable"))
+                {
+                    if (target.GetComponent<Image>())
+                    {
+                        target.GetComponent<Image>().color = new Color(255, 255, 255);
+                    }
+                    if (target.GetComponent<CanvasRenderer>())
+                    {
+                        target.GetComponent<CanvasRenderer>().SetColor(new Color(255, 255, 255));
+                    }
+                }
+            }
+            if (gameObject.tag == "targetable")
+            {
+                foreach (GameObject target in GameObject.FindGameObjectsWithTag("targetablep2"))
+                {
+                    if (target.GetComponent<Image>())
+                    {
+                        target.GetComponent<Image>().color = new Color(255, 255, 255);
+                    }
+                    if (target.GetComponent<CanvasRenderer>())
+                    {
+                        target.GetComponent<CanvasRenderer>().SetColor(new Color(255, 255, 255));
+                    }
+                }
+            }
         }
     }
 
@@ -102,17 +190,18 @@ public class CardGame : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         Timer.Register(0.2f, letcardShrink);
     }
     void GotDamaged(int dmg)
-    { 
+    {
+        health -= dmg;
         if (health <= 0)
         {
             Destroy(gameObject, 0.5f);   
         }
-        health -= dmg;
         healthText.text = health.ToString();
         healthText.color = new Color(200,0,0);
     }
     void Targeting()
     {
+        targeting = true;
         if(gameObject.tag =="targetablep2")
         {
             foreach (GameObject target in GameObject.FindGameObjectsWithTag("targetable"))
@@ -121,9 +210,9 @@ public class CardGame : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 {
                     target.GetComponent<Image>().color = new Color(0, 255, 0);
                 }
-                if (target.GetComponent<Material>())
+                if (target.GetComponent<CanvasRenderer>())
                 {
-                    target.GetComponent<Material>().color = new Color(0, 255, 0);
+                    target.GetComponent<CanvasRenderer>().SetColor(new Color(0, 255, 0));
                 }
             }
         }
@@ -135,9 +224,9 @@ public class CardGame : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 {
                     target.GetComponent<Image>().color = new Color(0, 255, 0);
                 }
-                if (target.GetComponent<Material>())
+                if (target.GetComponent<CanvasRenderer>())
                 {
-                    target.GetComponent<Material>().color = new Color(0, 255, 0);
+                    target.GetComponent<CanvasRenderer>().SetColor(new Color(0, 255, 0));
                 }
             }
         }
