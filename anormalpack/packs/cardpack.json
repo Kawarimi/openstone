@@ -10,10 +10,10 @@
 }
 ,
 {
-"name":"Predator Genji",
-"description":"Negates Stealth with Infrared Vision",
+"name":"Genji",
+"description":"Straight outta Overwatch",
 "atk":"10",
-"hp":"1",
+"hp":"2",
 "img":"genji.png",
 "manacost":"5",
 "maxindeck":"1"
@@ -45,6 +45,16 @@
 "atk":"5",
 "hp":"3",
 "img":"shiba.jpg",
+"manacost":"3",
+"maxindeck":"1"
+}
+,
+{
+"name":"Predator",
+"description":"El Diablo que hace trofeos de los hombres",
+"atk":"5",
+"hp":"3",
+"img":"predator.jpg",
 "manacost":"3",
 "maxindeck":"1"
 }
